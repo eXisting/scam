@@ -1,0 +1,12 @@
+{
+  "name": "scam",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix real-estate-transparency install && npm --prefix real-estate-transparency run build",
+    "dev": "npm --prefix real-estate-transparency run dev",
+    "lint": "npm --prefix real-estate-transparency run lint"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
