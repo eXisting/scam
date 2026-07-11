@@ -1,4 +1,34 @@
 import './App.css'
+import heroImage from './assets/scammer.jpg'
+import ijiImage from './assets/iji-home-group.png'
+import rahya from './assets/rahya.jpg'
+import eigh from './assets/eigh.jpg'
+import iji from './assets/iji.jpg'
+
+function ImageSlot({ size = 128, src, alt = '', className = '', pending = false }) {
+  const label = `${size}×${size}`
+  const classes = [
+    'image-slot',
+    pending && !src ? 'image-slot--pending' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+  return (
+    <div className={classes} style={{ width: `${size}px`, height: `${size}px` }}>
+      {src ? (
+        <img src={src} alt={alt} width={size} height={size} loading="lazy" />
+      ) : pending ? (
+        <>
+          <span className="image-slot__blur" aria-hidden="true" />
+          <span className="image-slot__pending">To be shared</span>
+        </>
+      ) : (
+        <span aria-hidden="true">{label}</span>
+      )}
+    </div>
+  )
+}
 
 const redFlags = [
   'Police reports have been filed by people describing real estate fraud connected to Anna Osipenko',
@@ -18,17 +48,15 @@ const timeline = [
     text: 'Four police reports are connected to the accusations, with victims alleging losses from Bali real estate promises and related transactions.',
   },
   {
+    date: '2026',
+    title: 'Police invitations',
+    text: 'Police invites developer to explain their positions. So far, all requests are ignored and no communication from Anna to investors.',
+  },
+  {
     date: 'Ongoing',
     title: 'Police investigation continues',
     text: 'The case is described as an ongoing police investigation. Anyone contacted about a property deal should stop payment and preserve evidence.',
   },
-]
-
-const reportLinks = [
-  'Existing police report numbers and complaint dates',
-  'Payment receipts, bank details, crypto wallet IDs, or transfer confirmations',
-  'Screenshots of listings, messages, contracts, passports, or identity claims',
-  'Names of platforms, agencies, companies, or intermediaries used in the transaction',
 ]
 
 const losses = [
@@ -54,11 +82,22 @@ const projects = [
     name: 'IJI Home Group',
     url: 'https://www.ijihomegroup.com/en/home',
     note: 'Real estate project link connected to Anna Osipenko research.',
+    image: iji,
+    alt: 'IJI Home Group preview image',
   },
   {
     name: 'Rahya Villas Bali',
     url: 'https://www.instagram.com/rahyavillasbali/?hl=en',
     note: 'Instagram project page connected to Bali property promotion.',
+    image: rahya,
+    alt: 'Rahya Villas Bali',
+  },
+  {
+    name: 'Eighth Sense',
+    url: 'https://www.instagram.com/eighth_sense_/',
+    note: 'Instagram profile connected to the projects under review.',
+    image: eigh,
+    alt: 'Eighth Sense',
   },
 ]
 
@@ -66,8 +105,11 @@ function App() {
   return (
     <main className="site-shell">
       <section className="hero-section" aria-labelledby="page-title">
-        <div className="scammer-sticker" aria-label="Scammer accusation sticker">
-          Scammer
+        <div className="hero-photo">
+          <ImageSlot size={256} src={heroImage} alt="Anna Osipenko" />
+          <div className="scammer-sticker" aria-label="Scammer accusation sticker">
+            Scammer
+          </div>
         </div>
         <div className="hero-copy">
           <p className="eyebrow">Bali scammer alert</p>
@@ -83,9 +125,6 @@ function App() {
             <a href="#losses" className="button secondary">
               View stolen amounts
             </a>
-            <a href="#report" className="button secondary">
-              Submit police evidence
-            </a>
             <a
               href="https://www.instagram.com/anna.businessmama/?hl=en"
               className="button secondary"
@@ -100,11 +139,13 @@ function App() {
 
       <section className="loss-section" id="losses">
         <div className="section-heading">
-          <p className="section-label">Reported losses</p>
-          <h2>Amount allegedly stolen from victims</h2>
-          <p>
-            Victims report more than $500,000 stolen, more than 10 people scammed, and 4 police reports connected to the ongoing investigation.
-          </p>
+          <div className="section-heading__text">
+            <p className="section-label">Reported losses</p>
+            <h2>Amount allegedly stolen from victims</h2>
+            <p>
+              Victims report more than $500,000 stolen, more than 10 people scammed, and 4 police reports connected to the ongoing investigation.
+            </p>
+          </div>
         </div>
         <div className="loss-grid">
           {losses.map((item) => (
@@ -123,11 +164,14 @@ function App() {
 
       <section className="projects-section" aria-labelledby="projects-title">
         <div className="section-heading">
-          <p className="section-label">Linked projects</p>
-          <h2 id="projects-title">Projects and profiles to verify</h2>
-          <p>
-            These links are included so victims, police, journalists, and potential buyers can verify the public-facing projects and profiles connected to the accusations.
-          </p>
+          <div className="section-heading__text">
+            <p className="section-label">Linked projects</p>
+            <h2 id="projects-title">Related projects and profiles</h2>
+            <p>
+              These links are included so victims, police, journalists, and potential buyers can verify the public-facing projects and profiles connected to the accusations.
+            </p>
+          </div>
+          <ImageSlot size={128} src={ijiImage}/>
         </div>
         <div className="project-links">
           {projects.map((project) => (
@@ -138,9 +182,17 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              <span>{project.name}</span>
-              <p>{project.note}</p>
-              <strong>{project.url}</strong>
+              <div className="project-link__text">
+                <span>{project.name}</span>
+                <p>{project.note}</p>
+                <strong>{project.url}</strong>
+              </div>
+              <ImageSlot
+                size={128}
+                src={project.image}
+                alt={project.alt}
+                pending={!project.image}
+              />
             </a>
           ))}
         </div>
@@ -182,8 +234,11 @@ function App() {
 
       <section className="timeline-section">
         <div className="section-heading">
-          <p className="section-label">Public record</p>
-          <h2>The accusation trail should be visible</h2>
+          <div className="section-heading__text">
+            <p className="section-label">Public record</p>
+            <h2>The accusation trail should be visible</h2>
+          </div>
+          <ImageSlot size={128} pending />
         </div>
         <div className="timeline">
           {timeline.map((item) => (
@@ -196,30 +251,6 @@ function App() {
         </div>
       </section>
 
-      <section className="report-section" id="report">
-        <div>
-          <p className="section-label">Victim evidence</p>
-          <h2>Send proof connected to the police reports</h2>
-          <p>
-            Strong accusations need strong documentation. Submit only materials you can prove are authentic, and redact sensitive personal data before publishing anything publicly.
-          </p>
-        </div>
-        <ul className="report-list">
-          {reportLinks.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="contact-strip" aria-label="Contact">
-        <div>
-          <p className="section-label">Expose the case</p>
-          <h2>Have police documents or victim proof?</h2>
-        </div>
-        <a className="button primary" href="mailto:evidence@example.com?subject=Anna%20Osipenko%20real%20estate%20case">
-          Email police evidence
-        </a>
-      </section>
     </main>
   )
 }
