@@ -31,7 +31,7 @@ function ImageSlot({ size = 128, src, alt = '', className = '', pending = false 
 }
 
 const redFlags = [
-  'Police reports have been filed by people describing real estate fraud connected to Anna Osipenko',
+  'Police reports have been filed by people describing real estate fraud connected to Anna Osypenko',
   'Victims report pressure to transfer deposits or fees before independent verification is complete',
   'Reported promises, listings, or transaction details allegedly did not match reality after payment',
 ]
@@ -40,7 +40,7 @@ const timeline = [
   {
     date: 'December 2024',
     title: 'First reported scam activity',
-    text: 'Victims began documenting real estate dealings connected to Anna Osipenko and preserving messages, payment records, and property claims.',
+    text: 'Victims began documenting real estate dealings connected to Anna Osypenko and preserving messages, payment records, and property claims.',
   },
   {
     date: '2025',
@@ -81,7 +81,7 @@ const projects = [
   {
     name: 'IJI Home Group',
     url: 'https://www.ijihomegroup.com/en/home',
-    note: 'Real estate project link connected to Anna Osipenko research.',
+    note: 'Real estate project link connected to Anna Osypenko research.',
     image: iji,
     alt: 'IJI Home Group preview image',
   },
@@ -106,16 +106,16 @@ function App() {
     <main className="site-shell">
       <section className="hero-section" aria-labelledby="page-title">
         <div className="hero-photo">
-          <ImageSlot size={256} src={heroImage} alt="Anna Osipenko" />
+          <ImageSlot size={256} src={heroImage} alt="Anna Osypenko" />
           <div className="scammer-sticker" aria-label="Scammer accusation sticker">
             Scammer
           </div>
         </div>
         <div className="hero-copy">
           <p className="eyebrow">Bali scammer alert</p>
-          <h1 id="page-title">Anna Osipenko</h1>
+          <h1 id="page-title">Anna Osypenko</h1>
           <p className="hero-lede">
-            Anna Osipenko is accused by victims of running a real estate scam. Police reports have already been filed, and the matter is described here as an ongoing police investigation.
+            Anna Osypenko is accused by victims of running a real estate scam. Police reports have already been filed, and the matter is described here as an ongoing police investigation.
           </p>
           <p className="hero-warning">Do not send money. Do not sign. Do not trust property promises without a lawyer and police-verified documents.</p>
           <div className="hero-actions" aria-label="Primary actions">
@@ -201,9 +201,9 @@ function App() {
       <section className="content-grid" id="evidence">
         <article className="panel main-panel">
           <p className="section-label">Accusations</p>
-          <h2>Anna Osipenko is accused of being a real estate scammer</h2>
+          <h2>Anna Osypenko is accused of being a real estate scammer</h2>
           <p>
-            Victims have reportedly gone to police after real estate dealings connected to Anna Osipenko. The accusation is serious: money was requested or received in connection with Bali property promises that victims say were misleading, false, or never fulfilled.
+            Victims have reportedly gone to police after real estate dealings connected to Anna Osypenko. The accusation is serious: money was requested or received in connection with Bali property promises that victims say were misleading, false, or never fulfilled.
           </p>
           <ul className="flag-list">
             {redFlags.map((flag) => (
